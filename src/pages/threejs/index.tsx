@@ -95,14 +95,17 @@ export default function ThreejsPage() {
     camera.position.z = 3; //设置相机位置
     camera.lookAt(scene.position);
 
-    const renderer = new THREE.WebGLRenderer(); //渲染器
+    const renderer = new THREE.WebGLRenderer({
+      antialias:true,
+      alpha:true,
+    }); //渲染器
     renderer.setSize(width, height);
     renderer.setClearColor(new THREE.Color(0xeeeeee));//设置渲染器的初始颜色
     container?.appendChild(renderer.domElement);
 
     //添加坐标系
     const axes=new THREE.AxesHelper(200);
-    scene.add(axes);
+    //scene.add(axes);
 
     //创建控制对象
     const controls=new OrbitControls(camera,renderer.domElement);
@@ -138,8 +141,8 @@ export default function ThreejsPage() {
       //动画循环渲染
       requestAnimationFrame(animate);
 
-      // cube.rotation.x += 0.01;
-      // cube.rotation.y += 0.01;
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
 
       renderer.render(scene, camera);
     };
@@ -263,7 +266,7 @@ export default function ThreejsPage() {
   }, []);
   return (
     <>
-      <div
+      {/* <div
         id="container"
         style={{ width: '400px', height: '400px', display: 'inline-block' }}
       />
@@ -275,7 +278,7 @@ export default function ThreejsPage() {
           display: 'inline-block',
           marginLeft: '5px',
         }}
-      />
+      /> */}
       <div
         id="container3"
         style={{
@@ -285,7 +288,7 @@ export default function ThreejsPage() {
           marginLeft: '5px',
         }}
       />
-      <div
+      {/* <div
         id="container4"
         style={{
           width: '400px',
@@ -301,7 +304,7 @@ export default function ThreejsPage() {
           height: '400px',
           display: 'inline-block',
         }}
-      />
+      /> */}
     </>
   );
 }
